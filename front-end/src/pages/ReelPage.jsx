@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Reel from '../components/Reel';
+import { Skeleton } from '../components/Player';
 
 const ReelPage = () => {
 	const { id } = useParams();
@@ -29,16 +30,49 @@ const ReelPage = () => {
 		fetchReel();
 	}, [id]);
 
-	if (loading) {
-		return <div className='text-white text-center mt-20'>Loading Reel...</div>;
+	if (!reel && !loading) {
+		return (
+			<div className='h-screen w-screen flex justify-center items-center'>
+				<div className=' flex flex-col justify-center items-center w-[300px] space-y-4'>
+					<div className='absolute inset-0 z-0 brightness-[0.3] overflow-hidden'>
+						<img
+							src='/ab4.png'
+							draggable='false'
+							className='w-full h-full object-cover blur-[1px]'
+						/>
+					</div>
+					<h1 className='text-lg z-10 text-white bg-[#FE005B] p-10 rounded-lg'>
+						Meme not found 🥺
+					</h1>
+				</div>
+			</div>
+		);
 	}
 
-	if (!reel) {
-		return <div className='text-white text-center mt-20'>Reel Not Found</div>;
+	if (loading) {
+		return (
+			<div className='relative hide-scrollbar flex flex-col items-center h-screen w-screen justify-center overflow-y-scroll scroll-smooth gap-4'>
+				<div className='absolute inset-0 z-0 brightness-[0.3] overflow-hidden'>
+					<img
+						src='/ab4.png'
+						draggable='false'
+						className='w-full h-full object-cover blur-[1px]'
+					/>
+				</div>
+				{Array.from({ length: 1 }).map((_, index) => (
+					<div
+						key={index}
+						className='w-[30%] max-md:w-[95%] h-[50vh] max-md:h-[80vh] md:h-full flex-shrink-0 mx-auto border-8 border-transparent'
+					>
+						<Skeleton height='full' width='full' radius='lg' />
+					</div>
+				))}
+			</div>
+		);
 	}
 
 	return (
-		<div className='h-screen w-screen flex justify-center items-center bg-black'>
+		<div className='h-screen w-screen flex justify-center items-center backdrop:brightness-50 bg-black bg-center'>
 			<Reel
 				media={reel.media.link}
 				type={reel.media.mediaType}
@@ -52,6 +86,7 @@ const ReelPage = () => {
 				activeReel={0}
 				setActiveReel={() => {}}
 				creator_wallet={reel.creator.wallet}
+				reelData={reel}
 			/>
 		</div>
 	);
