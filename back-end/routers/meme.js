@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.get('/', getMemes);
 router.post('/', verifyToken, createAmeme);
-router.get('/:memeId', verifyToken, getAMeme);
+router.get('/:memeId', getAMeme);
 router.post('/action/:memeId', verifyToken, memeAction);
 router.post('/like/:memeId', verifyToken, likeMeme);
 router.post('/place-bet/:memeId', verifyToken, betMeme);
