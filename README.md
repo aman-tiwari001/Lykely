@@ -1,4 +1,4 @@
-![lykely_logo](https://github.com/user-attachments/assets/0296e12e-cecc-485c-960a-dd088325093e)
+<img src="https://github.com/user-attachments/assets/e8bd0102-c453-4163-94fe-6fc836efb054" alt="Logo" width=550 />
 
 <a href="https://universaleverything.io/0x2FB1bF725c16D88fA3d124B09a72715069363DD3?network=testnet&assetGroup=grid">UP Project Link (Grid)</a> | 
 <a href="https://lykely.vercel.app/">Deployed Project Link</a>
